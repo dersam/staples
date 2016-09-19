@@ -138,13 +138,12 @@ ssh_status_prompt () {
 	fi
 }
 
-ret_status="%{$fg[red]%}"
-if [ $? -eq 0 ]; then
-  ret_status="%{$fg[green]%}"
-fi
+last_status () {
+  return "%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+}
 
 #setopt prompt_subst
-PROMPT='%{$fg[red]%}$(ssh_status_prompt)$(ret_status)Z%{$reset_color%}$_LIBERTY '
+PROMPT='%{$fg[red]%}$(ssh_status_prompt)$(last_status)%{$reset_color%}$_LIBERTY '
 
 #RPROMPT='$(nvm_prompt_info) $(get_usables) $(bureau_git_prompt)'
 RPROMPT='$(get_usables)$(bureau_git_prompt)'
