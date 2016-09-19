@@ -139,7 +139,7 @@ ssh_status_prompt () {
 }
 
 last_status () {
-  return "%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+  echo "%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 }
 
 #setopt prompt_subst
