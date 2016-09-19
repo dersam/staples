@@ -138,11 +138,13 @@ ssh_status_prompt () {
 	fi
 }
 
-# Change color of Z if last command failed
-local ret_status="%(?:%{$fg_bold[green]%} :%{$fg_bold[red]%} )"
+ret_status="%{$fg[red]%}"
+if [ $? -eq 0 ]; then
+  ret_status="%{$fg[green]%}"
+fi
 
 #setopt prompt_subst
-PROMPT='%{$fg[red]%}$(ssh_status_prompt)${ret_status}Z%{$reset_color%}$_LIBERTY '
+PROMPT='%{$fg[red]%}$(ssh_status_prompt)$(ret_status)Z%{$reset_color%}$_LIBERTY '
 
 #RPROMPT='$(nvm_prompt_info) $(get_usables) $(bureau_git_prompt)'
 RPROMPT='$(get_usables)$(bureau_git_prompt)'
