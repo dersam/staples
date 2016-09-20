@@ -143,7 +143,7 @@ last_timestamp=0
 last_exec () {
   let "elapsed = $SECONDS - $last_timestamp"
   last_timestamp=$SECONDS
-  echo calc_elapsed_time elapsed
+  calc_elapsed_time elapsed
 }
 
 #_1LEFT="$_USERNAME $_PATH"
