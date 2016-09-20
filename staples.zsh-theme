@@ -141,7 +141,8 @@ setopt prompt_subst
 
 last_timestamp=`date +%s`
 last_exec () {
-  seconds=`date +%s` - $last_timestamp
+  curtimestamp=`date +%s`
+  seconds=(($curtimestamp - $last_timestamp))
   echo calc_elapsed_time
 }
 
