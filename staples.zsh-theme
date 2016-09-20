@@ -122,7 +122,7 @@ get_usables () {
 setopt prompt_subst
 
 #_1LEFT="$_USERNAME $_PATH"
-_1RIGHT=' $(last_exec)[%*] '
+_1RIGHT=' [%*] '
 _1LEFT="$_PATH"
 
 bureau_precmd () {
