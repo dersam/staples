@@ -68,24 +68,6 @@ bureau_git_prompt () {
   echo $_result
 }
 
-#http://www.paradox.io/posts/9-my-new-zsh-prompt
-function calc_elapsed_time() {
-	local timer_result=$1
-  if [[ $timer_result -ge 3600 ]]; then
-    let "timer_hours = $timer_result / 3600"
-    let "remainder = $timer_result % 3600"
-    let "timer_minutes = $remainder / 60"
-    let "timer_seconds = $remainder % 60"
-    print -P "%B%F{yellow}${timer_hours}h${timer_minutes}m${timer_seconds}s%b"
-  elif [[ $timer_result -ge 60 ]]; then
-    let "timer_minutes = $timer_result / 60"
-    let "timer_seconds = $timer_result % 60"
-    print -P "%B%F{yellow}${timer_minutes}m${timer_seconds}s%b"
-  elif [[ $timer_result -gt 10 ]]; then
-    print -P "%B%F{yellow}${timer_result}s%b"
-  fi
-}
-
 _PATH="%{$fg_bold[white]%}%~%{$reset_color%}"
 
 if [[ $EUID -eq 0 ]]; then
@@ -139,20 +121,11 @@ get_usables () {
 
 setopt prompt_subst
 
-last_timestamp=0
-last_time=0
-
-last_exec () {
-  calc_elapsed_time last_time
-}
-
 #_1LEFT="$_USERNAME $_PATH"
 _1RIGHT=' $(last_exec)[%*] '
 _1LEFT="$_PATH"
 
 bureau_precmd () {
-  let "last_time = $SECONDS - $last_timestamp"
-  last_timestamp=$SECONDS
   _1SPACES=`get_space $_1LEFT $_1RIGHT`
   print
   print -rP "$_1LEFT$_1SPACES$_1RIGHT"
