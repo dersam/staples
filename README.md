@@ -13,10 +13,10 @@ It's called Staples because `Bureau en Gros` is the name of Staples (the office 
 Adds context sensitive tags to the righthand prompt, if conditions are met. This is currently all based on whether files exist in the current directory, but there's no reason it needs to be limited to that. `get_usables` can be modified
 to add additional tags. See below list for files checked and the tags they generate.
 
-- <gulp>: `gulpfile.js`
-- <composer>: `composer.json`
-- <npm>: `package.json`
-- <vagrant>: `VagrantFile`
+- `<gulp>`: `gulpfile.js`
+- `<composer>`: `composer.json`
+- `<npm>`: `package.json`
+- `<vagrant>`: `VagrantFile`
 
 ### SSH status
 If connected through an ssh session, displays `username@hostname` on the left second line before the prompt.
