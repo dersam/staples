@@ -139,10 +139,15 @@ get_usables () {
 
 setopt prompt_subst
 
+last_timestamp=`date +%s`
+last_exec () {
+  seconds=`date +%s` - $last_timestamp
+  echo calc_elapsed_time
+}
+
 #_1LEFT="$_USERNAME $_PATH"
 _1RIGHT=" $(last_exec)[%*] "
 _1LEFT="$_PATH"
-last_timestamp=`date +%s`
 
 bureau_precmd () {
   _1SPACES=`get_space $_1LEFT $_1RIGHT`
@@ -158,11 +163,6 @@ ssh_status_prompt () {
 
 last_status () {
   echo "%(?:%{$fg_bold[green]%}Z:%{$fg_bold[red]%}Z)"
-}
-
-last_exec () {
-  seconds=`date +%s` - $last_timestamp
-  echo calc_elapsed_time
 }
 
 #setopt prompt_subst
