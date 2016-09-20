@@ -141,7 +141,7 @@ setopt prompt_subst
 
 last_timestamp=0
 last_exec () {
-  elapsed=(($SECONDS - $last_timestamp))
+  let "elapsed = $SECONDS - $last_timestamp"
   last_timestamp=$SECONDS
   echo calc_elapsed_time elapsed
 }
