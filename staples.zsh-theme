@@ -139,11 +139,11 @@ get_usables () {
 
 setopt prompt_subst
 
-last_timestamp=`date +%s`
+last_timestamp=0
 last_exec () {
-  curtimestamp=`date +%s`
-  seconds=(($curtimestamp - $last_timestamp))
-  echo calc_elapsed_time
+  elapsed=(($SECONDS - $last_timestamp))
+  last_timestamp=$SECONDS
+  echo calc_elapsed_time elapsed
 }
 
 #_1LEFT="$_USERNAME $_PATH"
