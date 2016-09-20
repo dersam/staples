@@ -140,17 +140,19 @@ get_usables () {
 setopt prompt_subst
 
 last_timestamp=0
+last_time=0
+
 last_exec () {
-  let "elapsed = $SECONDS - $last_timestamp"
-  export last_timestamp=$SECONDS
-  calc_elapsed_time elapsed
+  calc_elapsed_time last_time
 }
 
 #_1LEFT="$_USERNAME $_PATH"
-_1RIGHT=" $(last_exec)[%*] "
+_1RIGHT=' $(last_exec)[%*] '
 _1LEFT="$_PATH"
 
 bureau_precmd () {
+  let "last_time = $SECONDS - $last_timestamp"
+  last_timestamp = $SECONDS
   _1SPACES=`get_space $_1LEFT $_1RIGHT`
   print
   print -rP "$_1LEFT$_1SPACES$_1RIGHT"
