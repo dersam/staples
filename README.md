@@ -4,6 +4,8 @@
 
 Based on oh-my-zsh's `bureau` theme.  I liked bureau's two-line layout; while having the current working directory visible is great, I always disliked that long paths would cramp the space to actually write commands.
 
+On smaller terminals, it looks like there's not that much space with the right hand side, but it will automatically disappear if you start to run into it while typing.
+
 Like `bureau`, the git status is displayed on the left hand side, although the colors and icons were tweaked slightly.
 
 It's called Staples because `Bureau en Gros` is the name of Staples (the office supply store) in Québec, and I like lame wordplay.
