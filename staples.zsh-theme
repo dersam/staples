@@ -76,13 +76,13 @@ function calc_elapsed_time() {
     let "remainder = $timer_result % 3600"
     let "timer_minutes = $remainder / 60"
     let "timer_seconds = $remainder % 60"
-    print -P "%B%F{yellow}>>> elapsed time ${timer_hours}h${timer_minutes}m${timer_seconds}s%b"
+    print -P "%B%F{yellow}${timer_hours}h${timer_minutes}m${timer_seconds}s%b"
   elif [[ $timer_result -ge 60 ]]; then
     let "timer_minutes = $timer_result / 60"
     let "timer_seconds = $timer_result % 60"
-    print -P "%B%F{yellow}>>> elapsed time ${timer_minutes}m${timer_seconds}s%b"
+    print -P "%B%F{yellow}${timer_minutes}m${timer_seconds}s%b"
   elif [[ $timer_result -gt 10 ]]; then
-    print -P "%B%F{yellow}>>> elapsed time ${timer_result}s%b"
+    print -P "%B%F{yellow}${timer_result}s%b"
   fi
 }
 
@@ -142,7 +142,7 @@ setopt prompt_subst
 last_timestamp=0
 last_exec () {
   let "elapsed = $SECONDS - $last_timestamp"
-  last_timestamp=$SECONDS
+  $last_timestamp=$SECONDS
   calc_elapsed_time elapsed
 }
 
