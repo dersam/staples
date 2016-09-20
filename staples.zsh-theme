@@ -68,6 +68,23 @@ bureau_git_prompt () {
   echo $_result
 }
 
+#http://www.paradox.io/posts/9-my-new-zsh-prompt
+function calc_elapsed_time() {
+	local timer_result=$1
+  if [[ $timer_result -ge 3600 ]]; then
+    let "timer_hours = $timer_result / 3600"
+    let "remainder = $timer_result % 3600"
+    let "timer_minutes = $remainder / 60"
+    let "timer_seconds = $remainder % 60"
+    print -P "%B%F{yellow}>>> elapsed time ${timer_hours}h${timer_minutes}m${timer_seconds}s%b"
+  elif [[ $timer_result -ge 60 ]]; then
+    let "timer_minutes = $timer_result / 60"
+    let "timer_seconds = $timer_result % 60"
+    print -P "%B%F{yellow}>>> elapsed time ${timer_minutes}m${timer_seconds}s%b"
+  elif [[ $timer_result -gt 10 ]]; then
+    print -P "%B%F{yellow}>>> elapsed time ${timer_result}s%b"
+  fi
+}
 
 _PATH="%{$fg_bold[white]%}%~%{$reset_color%}"
 
@@ -123,8 +140,9 @@ get_usables () {
 setopt prompt_subst
 
 #_1LEFT="$_USERNAME $_PATH"
-_1RIGHT=" [%*] "
+_1RIGHT=" $(last_exec)[%*] "
 _1LEFT="$_PATH"
+last_timestamp=`date +%s`
 
 bureau_precmd () {
   _1SPACES=`get_space $_1LEFT $_1RIGHT`
@@ -140,6 +158,11 @@ ssh_status_prompt () {
 
 last_status () {
   echo "%(?:%{$fg_bold[green]%}Z:%{$fg_bold[red]%}Z)"
+}
+
+last_exec () {
+  seconds=`date +%s` - $last_timestamp
+  echo calc_elapsed_time
 }
 
 #setopt prompt_subst
