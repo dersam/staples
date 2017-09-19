@@ -24,7 +24,7 @@ bureau_git_branch () {
 }
 
 bureau_git_status () {
-  _INDEX=$(command git status --porcelain -b 2> /dev/null)
+  _INDEX=$(command git status -uno --porcelain -b 2> /dev/null)
   _STATUS=""
   if $(echo "$_INDEX" | grep '^[AMRD]. ' &> /dev/null); then
     _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_STAGED"
