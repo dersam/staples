@@ -143,8 +143,37 @@ ssh_status_prompt () {
 	fi
 }
 
+# Show colorful chevrons according to what month it is.
+seasonal_chevrons () {
+  local date=$(date)
+  local chevrons="❯❯❯"
+
+  case $date in
+    # spring
+    *Mar*|*Apr*|*May*)
+      chevrons="%F{#81D4FA}❯%F{#A5D6A7}❯%F{#FFF59D}❯%f"
+      ;;
+    # summer
+    *Jun*|*Jul*|*Aug*)
+      chevrons="%F{#A5D6A7}❯%F{#FFF59D}❯%F{#FFAB91}❯%f"
+      ;;
+    # fall
+    *Sep*|*Oct*|*Nov*)
+      chevrons="%F{#E6EE9C}❯%F{#FFCC80}❯%F{#F48FB1}❯%f"
+      ;;
+    # winter
+    *Dec*|*Jan*|*Feb*)
+      chevrons="%F{#B39DDB}❯%F{#81D4FA}❯%F{#A5D6A7}❯%f"
+      ;;
+    *)
+      ;;
+  esac
+
+  echo -en $chevrons
+}
+
 last_status () {
-  echo "%(?:%{$fg_bold[green]%}S:%{$fg_bold[red]%}S)"
+  echo "%(?:%{$fg_bold[green]%}$(seasonal_chevrons):%{$fg_bold[red]%}$(seasonal_chevrons))"
 }
 
 #setopt prompt_subst
