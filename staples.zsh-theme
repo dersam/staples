@@ -120,6 +120,10 @@ get_usables () {
 		usables="<vagrant> $usables"
 	fi
 
+  if [[ -f 'Gemfile' ]]; then
+		usables="<bundler> $usables"
+	fi
+
 	if [[ -n $usables ]]; then
 		echo "%{$fg[magenta]%}$usables%{$reset_color%}"
 	fi
