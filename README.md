@@ -6,7 +6,7 @@ Based on oh-my-zsh's `bureau` theme.  I liked bureau's two-line layout; while ha
 
 On smaller terminals, it looks like there's not that much space with the right hand side, but it will automatically disappear if you start to run into it while typing.
 
-Like `bureau`, the git status is displayed on the left hand side, although the colors and icons were tweaked slightly.
+Like `bureau`, the git status is displayed on the right hand side, although the colors and icons were tweaked slightly.
 
 It's called Staples because `Bureau en Gros` is the name of Staples (the office supply store) in Québec, and I like lame wordplay.
 
@@ -19,6 +19,7 @@ to add additional tags. See below list for files checked and the tags they gener
 - `<composer>`: `composer.json`
 - `<npm>`: `package.json`
 - `<vagrant>`: `VagrantFile`
+- `<bundler>`: `Gemfile`
 
 ### SSH status
 If connected through an ssh session, displays `username@hostname` on the left second line before the prompt.
